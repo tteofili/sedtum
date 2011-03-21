@@ -15,8 +15,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- *  Create vectors from Lucene index
- *  */
+ * Create vectors from Lucene index
+ */
 public class VectorConverter {
 
   private String uniqueKey;
@@ -29,10 +29,14 @@ public class VectorConverter {
   }
 
   public LuceneIterable convert(String directoryPath) throws IOException {
+    return convert(directoryPath, 1, 100);
+  }
+
+  public LuceneIterable convert(String directoryPath, int minDf, int maxDfPercent) throws IOException {
     Directory directory = FSDirectory.open(new File(directoryPath));
     IndexReader reader = IndexReader.open(directory, true);
     Weight weight = new TFIDF();
-    TermInfo termInfo = new CachedTermInfo(reader, field, 1, 100);
+    TermInfo termInfo = new CachedTermInfo(reader, field, minDf, maxDfPercent);
     VectorMapper mapper = new TFDFMapper(reader, weight, termInfo);
     return new LuceneIterable(reader, uniqueKey, field, mapper);
   }

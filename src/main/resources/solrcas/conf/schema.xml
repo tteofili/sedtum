@@ -560,8 +560,8 @@
       default="NOW" multiValued="false"/>
     -->
   <field name="language" type="string" indexed="true" stored="true" required="false"/>
-  <field name="sentiment_score" type="string" indexed="true" stored="true" required="false"/>
-  <field name="sentiment_type" type="string" indexed="true" stored="true" required="false"/>
+  <field name="sentiment_score" type="tdouble" indexed="true" stored="true" required="false"/>
+  <field name="sentiment_type" type="text" indexed="true" stored="true" required="false"/>
 
     <!--
       Dynamic field definitions. If a field name is not found,

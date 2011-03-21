@@ -9,8 +9,7 @@ import org.apache.uima.solrcas.SolrCASConsumer;
 import java.net.URL;
 
 /**
- * @author tommaso
- * @version $Id$
+ * A {@link SolrCASConsumer} which runs on top of the {@link EmbeddedSolrServer}
  */
 
 public class EmbeddedSolrcas extends SolrCASConsumer {
