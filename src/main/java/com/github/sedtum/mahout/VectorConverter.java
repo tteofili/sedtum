@@ -1,8 +1,5 @@
 package com.github.sedtum.mahout;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
@@ -14,6 +11,12 @@ import org.apache.mahout.utils.vectors.lucene.VectorMapper;
 import org.apache.mahout.vectorizer.TFIDF;
 import org.apache.mahout.vectorizer.Weight;
 
+import java.io.File;
+import java.io.IOException;
+
+/**
+ *  Create vectors from Lucene index
+ *  */
 public class VectorConverter {
 
   private String uniqueKey;

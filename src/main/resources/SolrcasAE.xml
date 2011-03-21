@@ -2,7 +2,7 @@
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>
-  <annotatorImplementationName>org.apache.uima.solrcas.SolrCASConsumer</annotatorImplementationName>
+  <annotatorImplementationName>com.github.sedtum.uima.EmbeddedSolrcas</annotatorImplementationName>
   <processingResourceMetaData>
     <name>SolrcasAE</name>
     <description/>
@@ -49,13 +49,13 @@
       <nameValuePair>
         <name>solrInstanceType</name>
         <value>
-          <string>http</string>
+          <string>embedded</string>
         </value>
       </nameValuePair>
       <nameValuePair>
         <name>solrPath</name>
         <value>
-          <string>http://localhost:8983/apache-solr-1.4.2-dev/</string>
+          <string>classpath:/solrcas/</string>
         </value>
       </nameValuePair>
       <nameValuePair>
