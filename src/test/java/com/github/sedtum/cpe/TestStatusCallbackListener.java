@@ -22,10 +22,12 @@ package com.github.sedtum.cpe;
 import org.apache.uima.cas.CAS;
 import org.apache.uima.collection.EntityProcessStatus;
 import org.apache.uima.collection.StatusCallbackListener;
+import org.junit.Ignore;
 
 /**
  * Callback Listener. Receives event notifications from CPE.
  */
+@Ignore
 public class TestStatusCallbackListener implements StatusCallbackListener {
 
   private boolean isFinished = false;

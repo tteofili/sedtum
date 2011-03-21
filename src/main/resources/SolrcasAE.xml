@@ -43,7 +43,7 @@
       <nameValuePair>
         <name>mappingFile</name>
         <value>
-          <string>file://src/main/resources/solrcas/solrmapping.xml</string>
+          <string>src/main/resources/solrcas/solrmapping.xml</string>
         </value>
       </nameValuePair>
       <nameValuePair>
