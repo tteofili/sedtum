@@ -1,9 +1,5 @@
 package com.github.sedtum.cpe;
 
-import static org.junit.Assert.fail;
-
-import java.io.IOException;
-
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.collection.CollectionProcessingEngine;
 import org.apache.uima.collection.metadata.CpeDescription;
@@ -14,20 +10,32 @@ import org.apache.uima.util.ProcessTraceEvent;
 import org.apache.uima.util.XMLInputSource;
 import org.junit.Test;
 
+import java.io.IOException;
+
+import static org.junit.Assert.fail;
+
 public class SimpleCPETest {
 
   private CollectionProcessingEngine mCPE;
 
   @Test
   public void testSimpleCPEExec() {
-
     try {
       runCPE("src/main/resources/SimpleFirstStageCPE.xml");
     } catch (Exception e) {
       e.printStackTrace();
       fail(e.getLocalizedMessage());
     }
+  }
 
+  @Test
+  public void testPersonNameTrainerCPE() {
+    try {
+      runCPE("src/main/resources/PersonNameTrainerCPE.xml");
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail(e.getLocalizedMessage());
+    }
   }
 
   private void runCPE(String descriptorPath) throws InvalidXMLException, IOException,

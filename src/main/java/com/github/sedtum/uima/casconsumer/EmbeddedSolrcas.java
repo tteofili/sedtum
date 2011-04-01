@@ -1,4 +1,4 @@
-package com.github.sedtum.uima;
+package com.github.sedtum.uima.casconsumer;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
