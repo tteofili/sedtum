@@ -20,7 +20,7 @@
       <nameValuePair>
         <name>input.file</name>
         <value>
-          <string>/Users/tommasoteofili/Desktop/investor.etrade.com.com</string>
+          <string>src/test/data/crawled/invetrc</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

@@ -43,22 +43,36 @@
 				<multiValued>false</multiValued>
 				<mandatory>true</mandatory>
 			</configurationParameter>
+
+      <configurationParameter>
+        <name>opennlp.uima.Language</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
 		</configurationParameters>
 
 		<configurationParameterSettings>
 			<nameValuePair>
 				<name>opennlp.uima.ModelName</name>
 				<value>
-					<string>SentDetect.bin</string>
+					<string>target/SentDetect.bin</string>
 				</value>
 			</nameValuePair>
 
 			<nameValuePair>
 				<name>opennlp.uima.SentenceType</name>
 				<value>
-					<string>opennlp.uima.Sentence</string>
+					<string>org.apache.uima.SentenceAnnotation</string>
 				</value>
 			</nameValuePair>
+
+      <nameValuePair>
+        <name>opennlp.uima.Language</name>
+        <value>
+          <string>en-US</string>
+        </value>
+      </nameValuePair>
 		</configurationParameterSettings>
 		<typeSystemDescription />
 		<typePriorities />

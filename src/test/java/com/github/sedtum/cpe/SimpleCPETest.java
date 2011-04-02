@@ -38,6 +38,16 @@ public class SimpleCPETest {
     }
   }
 
+  @Test
+  public void testAllOpenNLPTrainerCPE() {
+    try {
+      runCPE("src/main/resources/AllOpenNLPTrainersCPE.xml");
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail(e.getLocalizedMessage());
+    }
+  }
+
   private void runCPE(String descriptorPath) throws InvalidXMLException, IOException,
           ResourceInitializationException, InterruptedException {
 

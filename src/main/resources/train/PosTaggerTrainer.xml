@@ -56,36 +56,51 @@
 				<multiValued>false</multiValued>
 				<mandatory>true</mandatory>
 			</configurationParameter>
+
+      <configurationParameter>
+        <name>opennlp.uima.Language</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
 		</configurationParameters>
 
 		<configurationParameterSettings>
 			<nameValuePair>
 				<name>opennlp.uima.ModelName</name>
 				<value>
-					<string>POS.bin</string>
+					<string>target/POS.bin</string>
 				</value>
 			</nameValuePair>
 
 			<nameValuePair>
 				<name>opennlp.uima.TokenType</name>
 				<value>
-					<string>opennlp.uima.Token</string>
+					<string>org.apache.uima.TokenAnnotation</string>
 				</value>
 			</nameValuePair>
 
 			<nameValuePair>
 				<name>opennlp.uima.SentenceType</name>
 				<value>
-					<string>opennlp.uima.Sentence</string>
+					<string>org.apache.uima.SentenceAnnotation</string>
 				</value>
 			</nameValuePair>
 
 			<nameValuePair>
 				<name>opennlp.uima.POSFeature</name>
 				<value>
-					<string>pos</string>
+					<string>posTag</string>
 				</value>
 			</nameValuePair>
+
+      <nameValuePair>
+        <name>opennlp.uima.Language</name>
+        <value>
+          <string>en-US</string>
+        </value>
+      </nameValuePair>
+
 		</configurationParameterSettings>
 		
 		<typeSystemDescription />
