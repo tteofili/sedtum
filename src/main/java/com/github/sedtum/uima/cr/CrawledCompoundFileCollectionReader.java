@@ -23,6 +23,7 @@ public class CrawledCompoundFileCollectionReader extends CollectionReader_ImplBa
   private List<String> lines;
   private int i;
 
+  @SuppressWarnings("unchecked")
   @Override
   public void initialize() throws ResourceInitializationException {
     Object configParameterValue = getConfigParameterValue(PARAM_INPUTFILE);
@@ -56,9 +57,6 @@ public class CrawledCompoundFileCollectionReader extends CollectionReader_ImplBa
 
     // Also store location of source document in CAS. This information is critical
     // if CAS Consumers will need to know where the original document contents are located.
-    // For example, the Semantic Search CAS Indexer writes this information into the
-    // search index that it creates, which allows applications that use the search index to
-    // locate the documents that satisfy their semantic queries.
     SourceDocumentInformation srcDocInfo = new SourceDocumentInformation(jcas);
     srcDocInfo.setOffsetInSource(i);
     srcDocInfo.setDocumentSize((int) inlinePage.length());
