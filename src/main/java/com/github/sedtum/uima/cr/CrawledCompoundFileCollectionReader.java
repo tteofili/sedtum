@@ -17,6 +17,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * creates one {@link SourceDocumentInformation} for each line in the document file.
+ * This is especially for compound crawled files which contain a line for each HTML page
+ */
 public class CrawledCompoundFileCollectionReader extends CollectionReader_ImplBase {
   public static final String PARAM_INPUTFILE = "input.file";
 
@@ -66,6 +70,7 @@ public class CrawledCompoundFileCollectionReader extends CollectionReader_ImplBa
   }
 
   public void close() throws IOException {
+    // do nothing
   }
 
   public Progress[] getProgress() {
