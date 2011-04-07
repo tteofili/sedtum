@@ -26,7 +26,7 @@ public class AlchemyPersonNameAnnotator extends JCasAnnotator_ImplBase {
         personAnnotation.setBegin(annotation.getBegin());
         personAnnotation.setEnd(annotation.getEnd());
         personAnnotation.addToIndexes();
-        getContext().getLogger().log(Level.INFO,"added a PersonAnnotation");
+        getContext().getLogger().log(Level.INFO,"added a PersonAnnotation for "+personAnnotation.getCoveredText());
       }
     }
     
