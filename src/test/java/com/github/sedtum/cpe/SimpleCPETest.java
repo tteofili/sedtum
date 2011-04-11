@@ -8,6 +8,7 @@ import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 import opennlp.tools.util.Span;
+import org.apache.commons.io.IOUtils;
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.collection.CollectionProcessingEngine;
 import org.apache.uima.collection.metadata.CpeDescription;
@@ -22,11 +23,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class SimpleCPETest {
 
-  private static final String DOCUMENT = " Marshall Schor is the Apache UIMA VP, I really don't know who Tong Zhang is instead. ";
   private static final String TOKENS_MODEL_FILE = "target/Tokens.bin";
   private static final String SENTENCE_MODEL_FILE = "target/SentDetect.bin";
   private static final String PERSON_MODEL_FILE = "target/Person.bin";
@@ -55,15 +56,16 @@ public class SimpleCPETest {
   private void checkModels() throws IOException {
     InputStream tokenizerModelIn = new FileInputStream(TOKENS_MODEL_FILE);
 
+    String document = IOUtils.toString(this.getClass().getResourceAsStream("/data/Apache_UIMA.txt"));
+    Tokenizer tokenizer = null;
+    SentenceDetectorME sentenceDetector = null;
+    NameFinderME nameFinder = null;
+
     String[] tokens = null;
     try {
       TokenizerModel model = new TokenizerModel(tokenizerModelIn);
-      Tokenizer tokenizer = new TokenizerME(model);
-      tokens = tokenizer.tokenize(DOCUMENT);
-      for (String token : tokens) {
-        System.out.println("token : "+token);
-      }
-
+      tokenizer = new TokenizerME(model);
+      tokens = tokenizer.tokenize(document);
     } catch (IOException e) {
       e.printStackTrace();
     } finally {
@@ -74,16 +76,14 @@ public class SimpleCPETest {
         }
       }
     }
+    assertTrue(tokens != null && tokens.length > 1);
 
     String[] sentences = null;
     InputStream sentenceModelIn = new FileInputStream(SENTENCE_MODEL_FILE);
     try {
       SentenceModel model = new SentenceModel(sentenceModelIn);
-      SentenceDetectorME sentenceDetector = new SentenceDetectorME(model);
-      sentences = sentenceDetector.sentDetect(DOCUMENT);
-      for (String sentence : sentences) {
-        System.out.println("sentence : "+sentence);
-      }
+      sentenceDetector = new SentenceDetectorME(model);
+      sentences = sentenceDetector.sentDetect(document);
     } catch (IOException e) {
       e.printStackTrace();
     } finally {
@@ -94,19 +94,19 @@ public class SimpleCPETest {
         }
       }
     }
-
-
+    assertTrue(sentences != null && sentences.length > 1);
 
     InputStream nfModelIn = new FileInputStream(PERSON_MODEL_FILE);
     Span[] persons = null;
     try {
       TokenNameFinderModel model = new TokenNameFinderModel(nfModelIn);
-      NameFinderME nameFinder = new NameFinderME(model);
-      persons = nameFinder.find(tokens);
-      for (Span span : persons) {
-        System.out.println("person : "+span.toString());
+      nameFinder = new NameFinderME(model);
+      for (String sentence : sentences) {
+        Span[] xPersons = nameFinder.find(tokenizer.tokenize(sentence));
+        if (xPersons != null && xPersons.length > 0) {
+          persons = xPersons;
+        }
       }
-
     } catch (IOException e) {
       e.printStackTrace();
     } finally {
@@ -117,6 +117,8 @@ public class SimpleCPETest {
         }
       }
     }
+    assertTrue(persons != null && persons.length > 0);
+
   }
 
   @Test
