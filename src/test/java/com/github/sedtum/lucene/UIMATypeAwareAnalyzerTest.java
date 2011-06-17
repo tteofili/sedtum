@@ -4,7 +4,6 @@ import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 import org.apache.lucene.analysis.tokenattributes.TermAttribute;
-import org.apache.lucene.analysis.tokenattributes.TypeAttribute;
 import org.junit.Test;
 
 import java.io.StringReader;
@@ -27,7 +26,6 @@ public class UIMATypeAwareAnalyzerTest {
       OffsetAttribute offsetAtt = (OffsetAttribute) ts.addAttribute(OffsetAttribute.class);
       PositionIncrementAttribute posAtt = (PositionIncrementAttribute) ts.addAttribute(
               PositionIncrementAttribute.class);
-      TypeAttribute typeAtt = (TypeAttribute) ts.addAttribute(TypeAttribute.class);
       while (ts.incrementToken()) {
         assertNotNull(offsetAtt);
         assertNotNull(termAtt);
