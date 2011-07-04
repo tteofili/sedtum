@@ -50,8 +50,7 @@ public class UIMABaseAnalyzerTest {
       TokenStream ts = analyzer.tokenStream("text", new StringReader("the big brown fox jumped on the wood"));
       CharTermAttribute termAtt = ts.addAttribute(CharTermAttribute.class);
       OffsetAttribute offsetAtt = ts.addAttribute(OffsetAttribute.class);
-      PositionIncrementAttribute posAtt = ts.addAttribute(
-              PositionIncrementAttribute.class);
+      PositionIncrementAttribute posAtt = ts.addAttribute(PositionIncrementAttribute.class);
       while (ts.incrementToken()) {
         assertNotNull(offsetAtt);
         assertNotNull(termAtt);
@@ -82,8 +81,8 @@ public class UIMABaseAnalyzerTest {
       assertTrue(result.totalHits > 0);
       Document d = indexSearcher.doc(result.scoreDocs[0].doc);
       assertNotNull(d);
-      assertNotNull(d.getField("title"));
-      assertNotNull(d.getField("contents"));
+      assertNotNull(d.getFieldable("title"));
+      assertNotNull(d.getFieldable("contents"));
 
       // add a second doc
       doc = new Document();
@@ -102,8 +101,8 @@ public class UIMABaseAnalyzerTest {
       for (ScoreDoc di : result.scoreDocs) {
         d = indexSearcher.doc(di.doc);
         assertNotNull(d);
-        assertNotNull(d.getField("title"));
-        assertNotNull(d.getField("contents"));
+        assertNotNull(d.getFieldable("title"));
+        assertNotNull(d.getFieldable("contents"));
       }
     } catch (Exception e) {
       fail(e.getLocalizedMessage());
