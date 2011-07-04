@@ -2,6 +2,7 @@ package com.github.sedtum.lucene;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.lucene.analysis.Tokenizer;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.analysis.tokenattributes.TermAttribute;
 import org.apache.uima.UIMAFramework;
@@ -19,9 +20,9 @@ import org.apache.uima.util.XMLInputSource;
 import java.io.IOException;
 import java.io.Reader;
 
-public class UIMABaseTokenizer extends Tokenizer {
+public final class UIMABaseTokenizer extends Tokenizer {
 
-  private TermAttribute termAttr;
+  private CharTermAttribute termAttr;
 
   private OffsetAttribute offsetAttr;
 
@@ -34,7 +35,7 @@ public class UIMABaseTokenizer extends Tokenizer {
   public UIMABaseTokenizer(String descriptorPath, String tokenType, Reader input) {
     super(input);
     this.tokenTypeString = tokenType;
-    this.termAttr = (TermAttribute) addAttribute(TermAttribute.class);
+    this.termAttr = (CharTermAttribute) addAttribute(TermAttribute.class);
     this.offsetAttr = (OffsetAttribute) addAttribute(OffsetAttribute.class);
     this.descriptorPath = descriptorPath;
   }
@@ -62,8 +63,8 @@ public class UIMABaseTokenizer extends Tokenizer {
     }
     if (iterator.hasNext()) {
       AnnotationFS next = iterator.next();
-      termAttr.setTermBuffer(next.getCoveredText());
-      termAttr.setTermLength(next.getCoveredText().length());
+      termAttr.append(next.getCoveredText());
+      termAttr.setLength(next.getCoveredText().length());
       offsetAttr.setOffset(next.getBegin(), next.getEnd());
       return true;
     } else {

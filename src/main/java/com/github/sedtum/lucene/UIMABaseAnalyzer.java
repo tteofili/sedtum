@@ -5,7 +5,7 @@ import org.apache.lucene.analysis.TokenStream;
 
 import java.io.Reader;
 
-public class UIMABaseAnalyzer extends Analyzer {
+public final class UIMABaseAnalyzer extends Analyzer {
 
   private String descriptorPath;
   private String tokenType;

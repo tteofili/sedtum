@@ -9,7 +9,7 @@ import java.io.Reader;
  * @author tommaso
  * @version $Id$
  */
-public class UIMATypeAwareAnalyzer extends Analyzer {
+public final class UIMATypeAwareAnalyzer extends Analyzer {
   private String descriptorPath;
   private String tokenType;
   private String featurePath;
