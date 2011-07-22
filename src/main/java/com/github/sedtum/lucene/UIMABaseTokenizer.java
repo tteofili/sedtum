@@ -4,7 +4,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
-import org.apache.lucene.analysis.tokenattributes.TermAttribute;
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -35,8 +34,8 @@ public final class UIMABaseTokenizer extends Tokenizer {
   public UIMABaseTokenizer(String descriptorPath, String tokenType, Reader input) {
     super(input);
     this.tokenTypeString = tokenType;
-    this.termAttr = (CharTermAttribute) addAttribute(TermAttribute.class);
-    this.offsetAttr = (OffsetAttribute) addAttribute(OffsetAttribute.class);
+    this.termAttr = addAttribute(CharTermAttribute.class);
+    this.offsetAttr = addAttribute(OffsetAttribute.class);
     this.descriptorPath = descriptorPath;
   }
 
