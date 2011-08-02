@@ -14,6 +14,9 @@ import org.apache.uima.util.InvalidXMLException;
 import java.io.IOException;
 import java.io.Reader;
 
+/**
+ * a {@link Tokenizer} which creates tokens from UIMA Annotations
+ */
 public final class UIMABaseTokenizer extends Tokenizer {
 
   private CharTermAttribute termAttr;

@@ -13,6 +13,10 @@ import org.apache.uima.util.InvalidXMLException;
 import java.io.IOException;
 import java.io.Reader;
 
+/**
+ * A {@link Tokenizer} which creates token from UIAM Annotations, filling also they {@link TypeAttribute} evaluating
+ * {@link FeaturePath}s
+ */
 public final class UIMATypeAwareTokenizer extends Tokenizer {
 
   private TypeAttribute typeAttr;

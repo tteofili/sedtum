@@ -6,8 +6,7 @@ import org.apache.lucene.analysis.TokenStream;
 import java.io.Reader;
 
 /**
- * @author tommaso
- * @version $Id$
+ * {@link Analyzer} which uses the {@link UIMATypeAwareTokenizer} for the tokenization phase
  */
 public final class UIMATypeAwareAnalyzer extends Analyzer {
   private String descriptorPath;

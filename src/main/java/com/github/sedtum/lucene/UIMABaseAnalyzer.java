@@ -5,6 +5,9 @@ import org.apache.lucene.analysis.TokenStream;
 
 import java.io.Reader;
 
+/**
+ * An {@link Analyzer} which use the {@link UIMABaseTokenizer} for creating tokens
+ */
 public final class UIMABaseAnalyzer extends Analyzer {
 
   private String descriptorPath;
