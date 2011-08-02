@@ -3,7 +3,6 @@ package com.github.sedtum.lucene;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
-import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexWriter;
@@ -50,13 +49,10 @@ public class UIMABaseAnalyzerTest {
       TokenStream ts = analyzer.tokenStream("text", new StringReader("the big brown fox jumped on the wood"));
       CharTermAttribute termAtt = ts.addAttribute(CharTermAttribute.class);
       OffsetAttribute offsetAtt = ts.addAttribute(OffsetAttribute.class);
-      PositionIncrementAttribute posAtt = ts.addAttribute(PositionIncrementAttribute.class);
       while (ts.incrementToken()) {
         assertNotNull(offsetAtt);
         assertNotNull(termAtt);
-        assertNotNull(posAtt);
-        System.out.println("token '" + termAtt.toString() + "' has pos.increment " + posAtt.getPositionIncrement() + " and offset "
-                + offsetAtt.startOffset() + "," + offsetAtt.endOffset());
+        System.out.println("token '" + termAtt.toString() + "' has offset " + offsetAtt.startOffset() + "," + offsetAtt.endOffset());
       }
     } catch (Exception e) {
       e.printStackTrace();
