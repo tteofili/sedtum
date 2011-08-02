@@ -52,6 +52,7 @@ public final class UIMABaseTokenizer extends Tokenizer {
     }
     if (iterator.hasNext()) {
       AnnotationFS next = iterator.next();
+      termAttr.setEmpty();
       termAttr.append(next.getCoveredText());
       termAttr.setLength(next.getCoveredText().length());
       offsetAttr.setOffset(next.getBegin(), next.getEnd());

@@ -36,7 +36,7 @@ public class UIMABaseAnalyzerTest {
     dir = new RAMDirectory();
     analyzer = new UIMABaseAnalyzer("src/main/resources/WhitespaceTokenizer.xml",
             "org.apache.uima.TokenAnnotation");
-    writer = new IndexWriter(dir, new IndexWriterConfig(Version.LUCENE_32,analyzer));
+    writer = new IndexWriter(dir, new IndexWriterConfig(Version.LUCENE_32, analyzer));
   }
 
   @After
@@ -55,6 +55,8 @@ public class UIMABaseAnalyzerTest {
         assertNotNull(offsetAtt);
         assertNotNull(termAtt);
         assertNotNull(posAtt);
+        System.out.println("token '" + termAtt.toString() + "' has pos.increment " + posAtt.getPositionIncrement() + " and offset "
+                + offsetAtt.startOffset() + "," + offsetAtt.endOffset());
       }
     } catch (Exception e) {
       e.printStackTrace();
