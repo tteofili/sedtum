@@ -1,11 +1,14 @@
-package com.github.sedtum.lucene;
+package com.github.sedtum.lucene.payloads;
 
+import com.github.sedtum.lucene.UIMATypeAwareTokenizer;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.payloads.TypeAsPayloadTokenFilter;
 
 import java.io.Reader;
 
 public class UIMAPayloadsAnalyzer extends Analyzer {
+
 
   private String descriptorPath;
 
@@ -15,8 +18,8 @@ public class UIMAPayloadsAnalyzer extends Analyzer {
 
   @Override
   public TokenStream tokenStream(String fieldName, Reader reader) {
-    return new UIMABasePayloadsFilter(new UIMABaseTokenizer(descriptorPath, 
-            "org.apache.uima.TokenAnnotation", reader));
+    return new TypeAsPayloadTokenFilter(new UIMATypeAwareTokenizer(descriptorPath,
+            "org.apache.uima.TokenAnnotation", "posTag", reader));
   }
 
 }
