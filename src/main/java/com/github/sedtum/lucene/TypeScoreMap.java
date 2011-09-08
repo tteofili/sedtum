@@ -10,8 +10,20 @@ public class TypeScoreMap {
 
   private Map<String, Float> typeMapping;
 
+  /**
+   * create a type-score map with the default values
+   */
   public TypeScoreMap() {
     initialize();
+  }
+
+  /**
+   * constructor to create a custom type-scores mapping
+   *
+   * @param map
+   */
+  public TypeScoreMap(Map<String, Float> map) {
+    this.typeMapping = map;
   }
 
   private void initialize() {
