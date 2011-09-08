@@ -29,8 +29,6 @@ public class TypeScoreMap {
   private void initialize() {
     this.typeMapping = new HashMap<String, Float>();
 
-    this.typeMapping.put("en", 20f); // this is custom and represents an entity
-
     this.typeMapping.put("jj", 1f); // big, brown, tree, Real, French
     this.typeMapping.put("vb", 1f); // approach, speak
     this.typeMapping.put("vv", 1f);
@@ -43,7 +41,7 @@ public class TypeScoreMap {
     this.typeMapping.put("at", 1f); // the, a
     this.typeMapping.put("cc", 1f); // or, and
     this.typeMapping.put("vbg", 1f); // accepting, following
-    this.typeMapping.put("np", 1f); // Madrid, England
+    this.typeMapping.put("np", 5f); // Madrid, England
     this.typeMapping.put(":", 1f); // :
     this.typeMapping.put("od", 1f); // first
     this.typeMapping.put("vbd", 1f); // jumped, claimed, chose
