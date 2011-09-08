@@ -45,7 +45,7 @@ public final class UIMATypeAwareTokenizer extends Tokenizer {
     this.descriptorPath = descriptorPath;
   }
 
-  private void analyzeText(Reader input, String descriptorPath) throws InvalidXMLException,
+  private void analyzeText() throws InvalidXMLException,
           IOException, ResourceInitializationException, AnalysisEngineProcessException, CASException {
     CAS cas = UIMAAnalyzersUtils.analyzeInput(input, descriptorPath, tokenTypeString);
     Type tokenType = cas.getTypeSystem().getType(this.tokenTypeString);
@@ -58,7 +58,7 @@ public final class UIMATypeAwareTokenizer extends Tokenizer {
   public boolean incrementToken() throws IOException {
     if (iterator == null) {
       try {
-        analyzeText(input, descriptorPath);
+        analyzeText();
       } catch (Exception e) {
         throw new IOException(e);
       }
