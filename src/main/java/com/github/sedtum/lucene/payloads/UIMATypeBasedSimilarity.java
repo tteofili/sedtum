@@ -14,6 +14,12 @@ public class UIMATypeBasedSimilarity extends DefaultSimilarity {
 
   @Override
   public float scorePayload(int docId, String fieldName, int start, int end, byte[] payload, int offset, int length) {
-     return scoreMap.getScore(new String(payload));
+    String[] ks = new String(payload).split("\\u0000");
+    Float score = 1.0f;
+    for (String k : ks) {
+      score*=scoreMap.getScore(k);
+      System.out.println("found score "+score+" for payload "+k);
+    }
+    return score;
   }
 }
