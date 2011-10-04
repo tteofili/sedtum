@@ -17,8 +17,8 @@ public class UIMATypeBasedSimilarity extends DefaultSimilarity {
     String[] ks = new String(payload).split("\\u0000");
     Float score = 1.0f;
     for (String k : ks) {
-      score*=scoreMap.getScore(k);
-      System.out.println("found score "+score+" for payload "+k);
+      score *= scoreMap.getScore(k);
+      System.out.println("found score " + score + " for payload " + k);
     }
     return score;
   }

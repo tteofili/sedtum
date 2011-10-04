@@ -18,7 +18,7 @@ import java.io.Reader;
  */
 public class UIMAAnalyzersUtils {
 
-  public static CAS analyzeInput(Reader input, String descriptorPath, String tokenTypeString) throws InvalidXMLException,
+  public static CAS analyzeInput(Reader input, String descriptorPath) throws InvalidXMLException,
           IOException, ResourceInitializationException, AnalysisEngineProcessException {
     ResourceSpecifier specifier = UIMAFramework.getXMLParser().parseResourceSpecifier(
             new XMLInputSource(descriptorPath));

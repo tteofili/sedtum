@@ -47,8 +47,8 @@ public final class UIMATypeAwareTokenizer extends Tokenizer {
 
   private void analyzeText() throws InvalidXMLException,
           IOException, ResourceInitializationException, AnalysisEngineProcessException, CASException {
-    CAS cas = UIMAAnalyzersUtils.analyzeInput(input, descriptorPath, tokenTypeString);
-    Type tokenType = cas.getTypeSystem().getType(this.tokenTypeString);
+    CAS cas = UIMAAnalyzersUtils.analyzeInput(input, descriptorPath);
+    Type tokenType = cas.getTypeSystem().getType(tokenTypeString);
     iterator = cas.getAnnotationIndex(tokenType).iterator();
     featurePath = cas.createFeaturePath();
     featurePath.initialize(this.typeAttributeFeaturePath);
