@@ -893,7 +893,7 @@
             <str name="name">org.apache.uima.alchemy.ts.entity.BaseEntity</str>
             <lst name="mapping">
               <str name="feature">text</str>
-              <str name="fieldNameFeature">name</str>
+              <str name="fieldNameFeature">subType</str>
               <str name="dynamicField">*_sm</str>
             </lst>
           </lst>
@@ -907,7 +907,7 @@
         </lst>
       </lst>
     </processor>
-    <processor class="solr.RunUpdateProcessorFactory" />
+    <processor class="solr.RunUpdateProcessorFactory"/>
   </updateRequestProcessorChain>
 
 
