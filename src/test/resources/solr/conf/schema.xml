@@ -218,16 +218,16 @@
     <fieldType name="text_uima" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
         <tokenizer class="com.github.sedtum.solr.StandardUIMATypeAwareTokenizerFactory"/>
-        <filter class="com.github.sedtum.lucene.TypeAwareStopFilter" ignoreCase="true" words="stopwords.txt"
+        <filter class="com.github.sedtum.solr.TypeAwareStopFilterFactory" ignoreCase="true" words="stopwords.txt"
                 enablePositionIncrements="true"/>
         <filter class="org.apache.solr.analysis.TypeAsPayloadTokenFilterFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-        <filter class="com.github.sedtum.lucene.TypeAwareStopFilter" ignoreCase="true" words="stopwords.txt"
+        <filter class="com.github.sedtum.solr.TypeAwareStopFilterFactory" ignoreCase="true" words="stopwords.txt"
                 enablePositionIncrements="true"/>
-        <filter class="com.github.sedtum.lucene.TypeAwareSynonimFilter" synonyms="synonyms.txt" ignoreCase="true"
+        <filter class="com.github.sedtum.solr.TypeAwareSynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true"
                 expand="true"/>
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
