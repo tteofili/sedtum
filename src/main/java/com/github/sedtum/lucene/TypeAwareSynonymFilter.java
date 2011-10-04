@@ -20,7 +20,7 @@ import java.util.List;
  * @author tommaso
  * @version $Id$
  */
-public class TypeAwareSynonimFilter extends TokenFilter {
+public final class TypeAwareSynonymFilter extends TokenFilter {
   public static final String TYPE_SYNONYM = "SYNONYM";
 
   private final SynonymMap synonyms;
@@ -143,7 +143,7 @@ public class TypeAwareSynonimFilter extends TokenFilter {
    *                   Note, if you set this to true, its your responsibility to lowercase
    *                   the input entries when you create the {@link SynonymMap}
    */
-  public TypeAwareSynonimFilter(TokenStream input, SynonymMap synonyms, boolean ignoreCase) {
+  public TypeAwareSynonymFilter(TokenStream input, SynonymMap synonyms, boolean ignoreCase) {
     super(input);
     this.synonyms = synonyms;
     this.ignoreCase = ignoreCase;
