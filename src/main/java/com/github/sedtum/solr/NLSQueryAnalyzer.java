@@ -1,9 +1,8 @@
 package com.github.sedtum.solr;
 
-import org.apache.uima.cas.CAS;
-import org.apache.uima.cas.FSIterator;
-import org.apache.uima.cas.FeatureStructure;
-import org.apache.uima.cas.Type;
+import com.github.sedtum.lucene.TypeScoreMap;
+import org.apache.uima.cas.*;
+import org.apache.uima.cas.text.AnnotationFS;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -19,26 +18,29 @@ public class NLSQueryAnalyzer {
   private Float threshold;
   private CAS cas;
   private String qstring;
+  TypeScoreMap scoreMap;
 
-  NLSQueryAnalyzer(CAS cas, String qstring) {
+  public NLSQueryAnalyzer(CAS cas, String qstring) {
     this.cas = cas;
     this.qstring = qstring;
     this.threshold = 0f;
+    this.scoreMap = new TypeScoreMap();
   }
 
-  NLSQueryAnalyzer(CAS cas, String qstring, Float threshold) {
+  public NLSQueryAnalyzer(CAS cas, String qstring, Float threshold) {
     this.cas = cas;
     this.qstring = qstring;
     this.threshold = threshold;
+    this.scoreMap = new TypeScoreMap();
   }
 
 
-  Boolean isNLSQuery() {
+  public Boolean isNLSQuery() {
     // TODO implement this
     return true;
   }
 
-  String extractPlaceQuery() {
+  public String extractPlaceQuery() {
     // TODO implement this
     return null;
   }
@@ -80,5 +82,23 @@ public class NLSQueryAnalyzer {
       }
     }
     return entitiesMap;
+  }
+
+  public String expandBoosts() {
+    Type type = cas.getTypeSystem().getType("org.apache.uima.TokenAnnotation");
+    FSIterator<AnnotationFS> annotationFSFSIterator = cas.getAnnotationIndex(type).iterator();
+    StringBuilder boostedQueryBuilder = new StringBuilder();
+    while (annotationFSFSIterator.hasNext()) {
+      AnnotationFS a = annotationFSFSIterator.next();
+      String word = a.getCoveredText();
+      Feature posTag = type.getFeatureByBaseName("posTag");
+      String stringValue = a.getStringValue(posTag);
+      Float boost = scoreMap.getScore(stringValue);
+      boostedQueryBuilder.append(word);
+      if (boost > 1.0f)
+        boostedQueryBuilder.append("^").append(boost);
+      boostedQueryBuilder.append(" ");
+    }
+    return boostedQueryBuilder.toString();
   }
 }

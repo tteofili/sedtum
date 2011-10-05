@@ -12,6 +12,9 @@ public class NLSQueryTranslator {
   public String createNLSExplicitQueryString(String qstr, NLSQueryAnalyzer nlsQueryAnalyzer) {
     StringBuilder nlsQueryBuilder = new StringBuilder();
 
+    // TODO give higher boosts based on PoS to qstr terms
+    qstr = nlsQueryAnalyzer.expandBoosts();
+
     // add the normal qstr
     // TODO : this should be translated as standard DisMax
     nlsQueryBuilder.append("(").append("text_uima").append(":").append("(").append(qstr).append(")").append(")").append(" ");
@@ -57,4 +60,5 @@ public class NLSQueryTranslator {
 
     return nlsQueryBuilder.toString();
   }
+
 }
