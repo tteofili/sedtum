@@ -36,7 +36,7 @@ public class NLSQueryTranslator {
     entitiesQueryBuilder.append("(");
     for (String type : entitiesMap.keySet()) {
       for (String entityValue : entitiesMap.get(type)) {
-        entitiesQueryBuilder.append(type.substring(type.lastIndexOf("."))).append(":").append(entityValue).append("^30 ");
+        entitiesQueryBuilder.append(type.substring(type.lastIndexOf(".") + 1)).append("_sm").append(":").append(entityValue).append("^30 ");
       }
     }
     entitiesQueryBuilder.append(")");

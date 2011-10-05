@@ -7,7 +7,7 @@ import org.apache.solr.common.params.SolrParams;
 import org.apache.solr.request.SolrQueryRequest;
 import org.apache.solr.search.DisMaxQParser;
 import org.apache.solr.search.DisMaxQParserPlugin;
-import org.apache.solr.search.ExtendedDismaxQParserPlugin;
+import org.apache.solr.search.LuceneQParserPlugin;
 import org.apache.solr.search.QParser;
 import org.apache.uima.cas.CAS;
 
@@ -64,7 +64,7 @@ public class SolrNLSQParserPlugin extends DisMaxQParserPlugin {
         if (nlsQueryAnalyzer.isNLSQuery()) {
           NLSQueryTranslator nlsQueryTranslator = new NLSQueryTranslator();
           String explicitNLSQuery = nlsQueryTranslator.createNLSExplicitQueryString(qstr, nlsQueryAnalyzer);
-          return new ExtendedDismaxQParserPlugin().createParser(explicitNLSQuery, localParams, params, req).parse();
+          return new LuceneQParserPlugin().createParser(explicitNLSQuery, localParams, params, req).parse();
         } else {
           return super.parse();
         }

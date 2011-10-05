@@ -14,13 +14,14 @@ public class NLSQueryTranslatorTest {
 
   @Test
   public void testTranslation() {
-    String[] testQueries = new String[]{"articles about science", "people working at CNR", "the H bomb history"};
+    String[] testQueries = new String[]{"articles about science", "people working at CNR", "the history of A.Einstein"};
     try {
       NLSQueryTranslator nlsQueryTranslator = new NLSQueryTranslator();
       NLSQueryAnalyzer nlsQueryAnalyzer = mock(NLSQueryAnalyzer.class);
       when(nlsQueryAnalyzer.isNLSQuery()).thenReturn(true);
       when(nlsQueryAnalyzer.extractConcepts()).thenReturn(new String[]{"science"});
       for (String nlsQuery : testQueries) {
+        when(nlsQueryAnalyzer.expandBoosts()).thenReturn(nlsQuery + "^5.0");
         String explicitNLSQuery = nlsQueryTranslator.createNLSExplicitQueryString(nlsQuery, nlsQueryAnalyzer);
         System.out.println(explicitNLSQuery);
         assertNotNull("returning a null query is wrong", explicitNLSQuery);

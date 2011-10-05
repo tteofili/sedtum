@@ -20,25 +20,34 @@
       <artifactId>solr-test-framework</artifactId>
       <version>3.4.0</version>
     </dependency>
-    <!--<dependency>-->
-    <!--<groupId>org.apache.solr</groupId>-->
-    <!--<artifactId>solr-uima</artifactId>-->
-    <!--<version>3.4.0</version>-->
-    <!--<exclusions>-->
-    <!--<exclusion>-->
-    <!--<groupId>org.apache.uima</groupId>-->
-    <!--<artifactId>AlchemyAPIAnnotator</artifactId>-->
-    <!--</exclusion>-->
-    <!--<exclusion>-->
-    <!--<groupId>org.apache.uima</groupId>-->
-    <!--<artifactId>WhitespaceTokenizer</artifactId>-->
-    <!--</exclusion>-->
-    <!--<exclusion>-->
-    <!--<groupId>org.apache.uima</groupId>-->
-    <!--<artifactId>Tagger</artifactId>-->
-    <!--</exclusion>-->
-    <!--</exclusions>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>org.apache.solr</groupId>
+      <artifactId>solr-uima</artifactId>
+      <version>3.4.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.solr</groupId>
+          <artifactId>solr-uima-an-alchemy</artifactId>
+        </exclusion>
+        <!--<exclusion>-->
+        <!--<groupId>org.apache.solr</groupId>-->
+        <!--<artifactId>solr-uima-an-calais</artifactId>-->
+        <!--</exclusion>-->
+        <exclusion>
+          <groupId>org.apache.solr</groupId>
+          <artifactId>solr-uima-an-wst</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.solr</groupId>
+          <artifactId>solr-uima-an-tagger</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.uima</groupId>
+          <artifactId>uimaj-core</artifactId>
+        </exclusion>
+      </exclusions>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-analyzers</artifactId>

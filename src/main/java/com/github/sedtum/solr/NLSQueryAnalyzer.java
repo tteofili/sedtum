@@ -53,7 +53,7 @@ public class NLSQueryAnalyzer {
       FeatureStructure fs = conceptsIterator.next();
       concepts.add(fs.getStringValue(conceptsType.getFeatureByBaseName("text")));
     }
-    Type keywordsType = cas.getTypeSystem().getType("org.apache.uima.alchemy.ts.concept.KeywordFS");
+    Type keywordsType = cas.getTypeSystem().getType("org.apache.uima.alchemy.ts.keywords.KeywordFS");
     FSIterator<FeatureStructure> keywordsIterator = cas.getIndexRepository().getAllIndexedFS(keywordsType);
     while (keywordsIterator.hasNext()) {
       FeatureStructure fs = keywordsIterator.next();
@@ -97,7 +97,8 @@ public class NLSQueryAnalyzer {
       boostedQueryBuilder.append(word);
       if (boost > 1.0f)
         boostedQueryBuilder.append("^").append(boost);
-      boostedQueryBuilder.append(" ");
+      if (annotationFSFSIterator.hasNext())
+        boostedQueryBuilder.append(" ");
     }
     return boostedQueryBuilder.toString();
   }
