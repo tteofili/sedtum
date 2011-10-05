@@ -44,7 +44,22 @@ public class NLSQueryAnalyzer {
   }
 
   public String[] extractConcepts() {
-    return new String[0];
+    Collection<String> concepts = new HashSet<String>();
+    Type conceptsType = cas.getTypeSystem().getType("org.apache.uima.alchemy.ts.concept.ConceptFS");
+    FSIterator<FeatureStructure> conceptsIterator = cas.getIndexRepository().getAllIndexedFS(conceptsType);
+    while (conceptsIterator.hasNext()) {
+      FeatureStructure fs = conceptsIterator.next();
+      concepts.add(fs.getStringValue(conceptsType.getFeatureByBaseName("text")));
+    }
+    Type keywordsType = cas.getTypeSystem().getType("org.apache.uima.alchemy.ts.concept.KeywordFS");
+    FSIterator<FeatureStructure> keywordsIterator = cas.getIndexRepository().getAllIndexedFS(keywordsType);
+    while (keywordsIterator.hasNext()) {
+      FeatureStructure fs = keywordsIterator.next();
+      concepts.add(fs.getStringValue(keywordsType.getFeatureByBaseName("text")));
+    }
+
+    String[] a = new String[concepts.size()];
+    return concepts.toArray(a);
   }
 
   public Map<String, Collection<String>> extractEntities() {

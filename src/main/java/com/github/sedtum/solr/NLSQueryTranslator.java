@@ -37,7 +37,8 @@ public class NLSQueryTranslator {
       }
     }
     entitiesQueryBuilder.append(")");
-    nlsQueryBuilder.append(entitiesQueryBuilder.toString());
+    if (entitiesQueryBuilder.length() > 2)
+      nlsQueryBuilder.append(entitiesQueryBuilder.toString());
 
     // extract concept(s) from the cas/query
     String[] concepts = nlsQueryAnalyzer.extractConcepts();

@@ -9,12 +9,8 @@ import org.apache.solr.search.DisMaxQParser;
 import org.apache.solr.search.DisMaxQParserPlugin;
 import org.apache.solr.search.ExtendedDismaxQParserPlugin;
 import org.apache.solr.search.QParser;
-import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
-import org.apache.uima.resource.ResourceInitializationException;
-import org.apache.uima.util.InvalidXMLException;
 
-import java.io.IOException;
 import java.io.StringReader;
 
 /**
@@ -59,23 +55,19 @@ public class SolrNLSQParserPlugin extends DisMaxQParserPlugin {
       try {
 //        cas = UIMAAnalyzersUtils.analyzeInput(new StringReader(qstr), String.valueOf(localParams.get("descriptor")));
         cas = UIMAAnalyzersUtils.analyzeInput(new StringReader(qstr), getClass().getResource("/NLSSearchAggregateAnnotator.xml").getFile());
-      } catch (InvalidXMLException e) {
-        e.printStackTrace();
-      } catch (IOException e) {
-        e.printStackTrace();
-      } catch (ResourceInitializationException e) {
-        e.printStackTrace();
-      } catch (AnalysisEngineProcessException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
 
-      assert cas != null;
-
-      NLSQueryAnalyzer nlsQueryAnalyzer = new NLSQueryAnalyzer(cas, qstr);
-      if (nlsQueryAnalyzer.isNLSQuery()) {
-        NLSQueryTranslator nlsQueryTranslator = new NLSQueryTranslator();
-        String explicitNLSQuery = nlsQueryTranslator.createNLSExplicitQueryString(qstr, nlsQueryAnalyzer);
-        return new ExtendedDismaxQParserPlugin().createParser(explicitNLSQuery, localParams, params, req).parse();
+      if (cas != null) {
+        NLSQueryAnalyzer nlsQueryAnalyzer = new NLSQueryAnalyzer(cas, qstr);
+        if (nlsQueryAnalyzer.isNLSQuery()) {
+          NLSQueryTranslator nlsQueryTranslator = new NLSQueryTranslator();
+          String explicitNLSQuery = nlsQueryTranslator.createNLSExplicitQueryString(qstr, nlsQueryAnalyzer);
+          return new ExtendedDismaxQParserPlugin().createParser(explicitNLSQuery, localParams, params, req).parse();
+        } else {
+          return super.parse();
+        }
       } else
         return super.parse();
     }
