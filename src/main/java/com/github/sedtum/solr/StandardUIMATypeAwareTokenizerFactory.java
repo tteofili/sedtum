@@ -13,7 +13,6 @@ import java.io.Reader;
 public class StandardUIMATypeAwareTokenizerFactory extends BaseTokenizerFactory {
   @Override
   public Tokenizer create(Reader input) {
-    return new UIMATypeAwareTokenizer(this.getClass().getResource("/HmmTaggerAggregate.xml").getFile(),
-            "org.apache.uima.TokenAnnotation", "posTag", input);
+    return new UIMATypeAwareTokenizer("/HmmTaggerAggregate.xml", "org.apache.uima.TokenAnnotation", "posTag", input);
   }
 }

@@ -12,6 +12,7 @@ import org.apache.uima.util.XMLInputSource;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.net.URL;
 
 /**
  * Utility class for UIMA related common activities
@@ -20,8 +21,10 @@ public class UIMAAnalyzersUtils {
 
   public static CAS analyzeInput(Reader input, String descriptorPath) throws InvalidXMLException,
           IOException, ResourceInitializationException, AnalysisEngineProcessException {
+    URL url = UIMAAnalyzersUtils.class.getResource(descriptorPath);
+    XMLInputSource in = new XMLInputSource(url);
     ResourceSpecifier specifier = UIMAFramework.getXMLParser().parseResourceSpecifier(
-            new XMLInputSource(descriptorPath));
+            in);
     AnalysisEngine ae = UIMAFramework.produceAnalysisEngine(specifier);
     CAS cas = ae.newCAS();
     cas.setDocumentText(IOUtils.toString(input));

@@ -23,7 +23,7 @@ public class NLSQueryTranslator {
 //        nlsQueryBuilder.append("(").append(localParams.get("sentencefield")).append(":").append(qstr).append(")").append(" ");
     nlsQueryBuilder.append("(").append("sentence").append(":").append("(").append(qstr).append(")").append(")^40").append(" ");
 
-    // check for 'place queries'
+    // TODO check for 'place queries'
     String placeQuery = nlsQueryAnalyzer.extractPlaceQuery();
     if (placeQuery != null) {
       // add the place query as a boost query
