@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 /**
- * A {@link Tokenizer} which creates token from UIAM Annotations, filling also they {@link TypeAttribute} evaluating
+ * A {@link Tokenizer} which creates token from UIMA Annotations, filling also they {@link TypeAttribute} evaluating
  * {@link FeaturePath}s
  */
 public final class UIMATypeAwareTokenizer extends Tokenizer {

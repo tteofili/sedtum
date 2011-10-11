@@ -864,10 +864,9 @@
   <updateRequestProcessorChain name="uima">
     <processor class="org.apache.solr.uima.processor.UIMAUpdateRequestProcessorFactory">
       <lst name="uimaConfig">
-        <lst name="runtimeParameters">
-          <int name="ngramsize">3</int>
-        </lst>
+        <lst name="runtimeParameters"/>
         <str name="analysisEngine">/NLSSearchAggregateAnnotator.xml</str>
+        <bool name="ignoreErrors">true</bool>
         <lst name="analyzeFields">
           <bool name="merge">false</bool>
           <arr name="fields">
@@ -1541,6 +1540,7 @@
      <queryParser name="myparser" class="com.mycompany.MyQParserPlugin"/>
     -->
   <queryParser name="plq" class="com.github.sedtum.solr.PayloadDisMaxQParserPlugin"/>
+  <queryParser name="nls" class="com.github.sedtum.solr.SolrNLSQParserPlugin"/>
   <!-- Function Parsers
 
        http://wiki.apache.org/solr/FunctionQuery

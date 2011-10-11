@@ -37,8 +37,8 @@ public class SolrNLSQParserPluginTest {
               MapSolrParams(new HashMap<String, String>()), new MapSolrParams(new HashMap<String, String>()),
               request);
       Query q = nlsQParser.parse();
+      assertNotNull(q);
       System.out.println(q.toString());
-      assertNotNull(q != null);
     } catch (Exception e) {
       e.printStackTrace();
       fail(e.getLocalizedMessage());
