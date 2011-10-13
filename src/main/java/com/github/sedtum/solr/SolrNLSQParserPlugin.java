@@ -57,20 +57,18 @@ public class SolrNLSQParserPlugin extends DisMaxQParserPlugin {
         cas = UIMAAnalyzersUtils.analyzeInput(new StringReader(qstr), "/NLSSearchAggregateAnnotator.xml");
       } catch (Exception e) {
         e.printStackTrace();
+        return super.parse();
       }
 
-      if (cas != null) {
-        NLSQueryAnalyzer nlsQueryAnalyzer = new NLSQueryAnalyzer(cas, qstr);
-        if (nlsQueryAnalyzer.isNLSQuery()) {
-          String explicitNLSQuery = new NLSQueryTranslator().createNLSExplicitQueryString(qstr, nlsQueryAnalyzer);
-          return new LuceneQParserPlugin().createParser(explicitNLSQuery, localParams, params, req).parse();
-        } else {
-          return super.parse();
-        }
-      } else
+      NLSQueryAnalyzer nlsQueryAnalyzer = new NLSQueryAnalyzer(cas, qstr);
+      if (nlsQueryAnalyzer.isNLSQuery()) {
+        String explicitNLSQuery = new NLSQueryTranslator().createNLSExplicitQueryString(qstr, nlsQueryAnalyzer);
+        return new LuceneQParserPlugin().createParser(explicitNLSQuery, localParams, params, req).parse();
+      } else {
         return super.parse();
+      }
+
+
     }
-
-
   }
 }
