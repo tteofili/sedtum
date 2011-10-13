@@ -562,7 +562,7 @@
 via copyField further on in this schema  -->
     <field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
     <field name="text_uima" type="text_uima" indexed="true" stored="true" multiValued="true"/>
-    <field name="sentence" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="sentence" type="text_general" indexed="true" stored="true" multiValued="true"/>
     <field name="concept" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="sentiment" type="string" indexed="true" stored="true" multiValued="true"/>
 

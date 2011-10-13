@@ -33,7 +33,7 @@ public class UIMABaseAnalyzerTest {
   @Before
   public void setUp() throws Exception {
     dir = new RAMDirectory();
-    analyzer = new UIMABaseAnalyzer("src/main/resources/WhitespaceTokenizer.xml",
+    analyzer = new UIMABaseAnalyzer("/WhitespaceTokenizer.xml",
             "org.apache.uima.TokenAnnotation");
     writer = new IndexWriter(dir, new IndexWriterConfig(Version.LUCENE_32, analyzer));
   }

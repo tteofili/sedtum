@@ -20,7 +20,7 @@ public class UIMATypeAwareAnalyzerTest {
   @Test
   public void testSimpleUsage() {
     try {
-      UIMATypeAwareAnalyzer analyzer = new UIMATypeAwareAnalyzer("src/main/resources/HmmTaggerAggregate.xml",
+      UIMATypeAwareAnalyzer analyzer = new UIMATypeAwareAnalyzer("/HmmTaggerAggregate.xml",
               "org.apache.uima.TokenAnnotation", "posTag");
       TokenStream ts = analyzer.tokenStream("text", new StringReader("the big brown fox jumped on the wood"));
       CharTermAttribute termAtt = ts.addAttribute(CharTermAttribute.class);
@@ -32,7 +32,7 @@ public class UIMATypeAwareAnalyzerTest {
         assertNotNull(termAtt);
         assertNotNull(posAtt);
         assertNotNull(typeAttr);
-        System.out.println("token '"+termAtt.toString()+"' has type "+typeAttr.type());
+        System.out.println("token '" + termAtt.toString() + "' has type " + typeAttr.type());
       }
     } catch (Exception e) {
       e.printStackTrace();

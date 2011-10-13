@@ -3,6 +3,7 @@ package com.github.sedtum.lucene;
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
+import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 import org.apache.lucene.analysis.tokenattributes.TypeAttribute;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.*;
@@ -25,6 +26,8 @@ public final class UIMATypeAwareTokenizer extends Tokenizer {
 
   private OffsetAttribute offsetAttr;
 
+  private PositionIncrementAttribute positionIncrementAttr;
+
   private FSIterator<AnnotationFS> iterator;
 
   private String tokenTypeString;
@@ -41,6 +44,7 @@ public final class UIMATypeAwareTokenizer extends Tokenizer {
     this.termAttr = addAttribute(CharTermAttribute.class);
     this.typeAttr = addAttribute(TypeAttribute.class);
     this.offsetAttr = addAttribute(OffsetAttribute.class);
+    this.positionIncrementAttr = addAttribute(PositionIncrementAttribute.class);
     this.typeAttributeFeaturePath = typeAttributeFeaturePath;
     this.descriptorPath = descriptorPath;
   }
@@ -70,6 +74,7 @@ public final class UIMATypeAwareTokenizer extends Tokenizer {
       termAttr.setLength(next.getCoveredText().length());
       offsetAttr.setOffset(next.getBegin(), next.getEnd());
       typeAttr.setType(featurePath.getValueAsString(next));
+      positionIncrementAttr.setPositionIncrement(next.getEnd() - next.getBegin());
       return true;
     } else {
       iterator = null;

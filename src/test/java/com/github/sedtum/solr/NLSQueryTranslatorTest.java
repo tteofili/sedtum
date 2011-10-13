@@ -14,7 +14,8 @@ public class NLSQueryTranslatorTest {
 
   @Test
   public void testTranslation() {
-    String[] testQueries = new String[]{"articles about science", "people working at CNR", "the history of A.Einstein"};
+    String[] testQueries = new String[]{"articles about science", "people working at CNR", "the history of A.Einstein",
+            "back to the future"};
     try {
       NLSQueryTranslator nlsQueryTranslator = new NLSQueryTranslator();
       NLSQueryAnalyzer nlsQueryAnalyzer = mock(NLSQueryAnalyzer.class);
@@ -32,4 +33,5 @@ public class NLSQueryTranslatorTest {
       fail(e.getLocalizedMessage());
     }
   }
+
 }

@@ -63,7 +63,7 @@ public class NLSQueryValidatorTest {
   private static CAS posTagQuery(String query) throws IOException, InvalidXMLException,
           ResourceInitializationException, AnalysisEngineProcessException {
     return UIMAAnalyzersUtils.analyzeInput(new StringReader(query),
-            "src/main/resources/HmmTaggerAggregate.xml");
+            "/HmmTaggerAggregate.xml");
   }
 
 }

@@ -54,7 +54,7 @@ public class SolrNLSQParserPlugin extends DisMaxQParserPlugin {
       // analyze the query
       try {
 //        cas = UIMAAnalyzersUtils.analyzeInput(new StringReader(qstr), String.valueOf(localParams.get("descriptor")));
-        cas = UIMAAnalyzersUtils.analyzeInput(new StringReader(qstr), getClass().getResource("/NLSSearchAggregateAnnotator.xml").getFile());
+        cas = UIMAAnalyzersUtils.analyzeInput(new StringReader(qstr), "/NLSSearchAggregateAnnotator.xml");
       } catch (Exception e) {
         e.printStackTrace();
       }

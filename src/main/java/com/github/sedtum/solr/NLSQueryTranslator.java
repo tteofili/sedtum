@@ -10,6 +10,9 @@ import java.util.Map;
 public class NLSQueryTranslator {
 
   public String createNLSExplicitQueryString(String qstr, NLSQueryAnalyzer nlsQueryAnalyzer) {
+
+    // TODO : create a NLS queries cache
+
     StringBuilder nlsQueryBuilder = new StringBuilder();
 
     // TODO give higher boosts based on PoS to qstr terms
@@ -17,11 +20,13 @@ public class NLSQueryTranslator {
 
     // add the normal qstr
     // TODO : this should be translated as standard DisMax
-    nlsQueryBuilder.append("(").append("text_uima").append(":").append("(").append(qstr).append(")").append(")").append(" ");
+    nlsQueryBuilder.append("(").append("text_uima").append(":").append("(").append(qstr).append(")").append(" ")
+            .append("text_uima").append(":").append("\\\"").append(qstr).append("\\\"~1").append(")").append(" ");
 
     // add in-sentence qstr matching
 //        nlsQueryBuilder.append("(").append(localParams.get("sentencefield")).append(":").append(qstr).append(")").append(" ");
-    nlsQueryBuilder.append("(").append("sentence").append(":").append("(").append(qstr).append(")").append(")^40").append(" ");
+    nlsQueryBuilder.append("(").append("sentence").append(":").append("(").append(qstr).append(")").append(" ").
+            append("sentence").append(":").append("\\\"").append(qstr).append("\\\"~1").append(")^40").append(" ");
 
     // TODO check for 'place queries'
     String placeQuery = nlsQueryAnalyzer.extractPlaceQuery();

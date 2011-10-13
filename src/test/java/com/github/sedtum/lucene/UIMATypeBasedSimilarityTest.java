@@ -30,7 +30,7 @@ public class UIMATypeBasedSimilarityTest {
   @Before
   public void setUp() throws Exception {
     dir = new RAMDirectory();
-    analyzer = new UIMAPayloadsAnalyzer("src/main/resources/HmmTaggerAggregate.xml");
+    analyzer = new UIMAPayloadsAnalyzer("/HmmTaggerAggregate.xml");
     writer = new IndexWriter(dir, new IndexWriterConfig(Version.LUCENE_33, analyzer));
 
     Document doc = new Document();
