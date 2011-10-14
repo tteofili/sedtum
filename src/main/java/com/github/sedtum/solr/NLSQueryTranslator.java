@@ -15,23 +15,24 @@ public class NLSQueryTranslator {
 
     StringBuilder nlsQueryBuilder = new StringBuilder();
 
-    // TODO give higher boosts based on PoS to qstr terms
-    qstr = nlsQueryAnalyzer.expandBoosts();
+    // TODO give higher boosts based on PoS to nlsQstr terms
+    String nlsQstr = nlsQueryAnalyzer.expandBoosts();
 
-    // add the normal qstr
+    // add the normal nlsQstr
     // TODO : this should be translated as standard DisMax
-    nlsQueryBuilder.append("(").append("text_uima").append(":").append("(").append(qstr).append(")").append(" ")
-            .append("text_uima").append(":").append("\\\"").append(qstr).append("\\\"~1").append(")").append(" ");
 
-    // add in-sentence qstr matching
-//        nlsQueryBuilder.append("(").append(localParams.get("sentencefield")).append(":").append(qstr).append(")").append(" ");
-    nlsQueryBuilder.append("(").append("sentence").append(":").append("(").append(qstr).append(")").append(" ").
-            append("sentence").append(":").append("\\\"").append(qstr).append("\\\"~1").append(")^40").append(" ");
+//    nlsQueryBuilder.append("(").append("text_uima").append(":").append("(").append(nlsQstr).append(")").append(" ")
+//            .append("text_uima").append(":").append("\"").append(qstr).append("\"~1").append(")").append(" ");
 
-    // TODO check for 'place queries'
+    // add in-sentence nlsQstr matching
+//        nlsQueryBuilder.append("(").append(localParams.get("sentencefield")).append(":").append(nlsQstr).append(")").append(" ");
+    nlsQueryBuilder.append("(").append("sentence").append(":").append("(").append(nlsQstr).append(")").append(" ").
+            append("sentence").append(":").append("\"").append(qstr).append("\"~1").append(")^40").append(" ");
+
+    // check for 'place queries'
     String placeQuery = nlsQueryAnalyzer.extractPlaceQuery();
     if (placeQuery != null) {
-      // add the place query as a boost query
+      // TODO : add the place query as a boost query
 
     }
 
